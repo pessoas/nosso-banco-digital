@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.github.pessoas.nossobancodigital.entity.validators.MaiorDezoito;
+
 @Entity
 public class Cliente {
     
@@ -37,6 +39,7 @@ public class Cliente {
 
     @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @MaiorDezoito(message = "Cliente precisa ser maior de 18 anos")
     LocalDate dataNascimento;
 
 
