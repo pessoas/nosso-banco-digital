@@ -1,5 +1,7 @@
 package io.github.pessoas.nossobancodigital.service.implementations;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class ClienteServiceImplementation implements ClienteService {
     @Override
     public Cliente save(Cliente cliente) {
         return clienteRepository.save(cliente);
+    }
+
+    @Override
+    public Optional<Cliente> findByCpf(String cpf) {
+        return clienteRepository.findByCpf(cpf);
     }
     
 }

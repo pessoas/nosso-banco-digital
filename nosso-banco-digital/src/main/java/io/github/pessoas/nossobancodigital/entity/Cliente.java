@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -44,7 +45,8 @@ public class Cliente {
     @MaiorDezoito(message = "Cliente precisa ser maior de 18 anos")
     LocalDate dataNascimento;
 
-
+    @OneToOne
+    private Endereco endereco;
     
 
     public Long getId() {
@@ -132,6 +134,14 @@ public class Cliente {
         this.cpf = cpf;
         this.email = email;
         this.dataNascimento = dataNascimento;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     
