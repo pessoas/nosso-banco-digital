@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import br.com.caelum.stella.bean.validation.CPF;
 import io.github.pessoas.nossobancodigital.entity.validators.MaiorDezoito;
 
 @Entity
@@ -30,6 +31,7 @@ public class Cliente {
 
     @NotBlank
     @Column(unique = true)
+    @CPF(message = "CPF inválido")
     String cpf;
 
     @NotBlank(message = "O e-mail precisa ser preenchido")
