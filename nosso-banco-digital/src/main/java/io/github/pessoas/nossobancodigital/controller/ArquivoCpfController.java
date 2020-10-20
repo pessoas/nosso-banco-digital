@@ -73,11 +73,20 @@ public class ArquivoCpfController {
 
             clienteSalvo.setLinkArquivoCpf(link);
             clienteService.save(clienteSalvo);
+
+            uriComponentsBuilder = UriComponentsBuilder
+                .newInstance()
+                .scheme(uri.getScheme())
+                .schemeSpecificPart(uri.getSchemeSpecificPart())
+                .userInfo(uri.getUserInfo())
+                .host(uri.getHost())
+                .port(uri.getPort())
+                .fragment(uri.getFragment());
             
 
             URI location = uriComponentsBuilder
                 .path("/api/clientes/checagem/{email}")
-                .buildAndExpand(clienteSalvo.getEmail())
+                .buildAndExpand(clienteSalvo.getEmail(), cpf)
                 .toUri();
 
             return ResponseEntity.created(location).build();

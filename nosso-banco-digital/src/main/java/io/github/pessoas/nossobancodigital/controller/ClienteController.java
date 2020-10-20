@@ -1,5 +1,6 @@
 package io.github.pessoas.nossobancodigital.controller;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
 
@@ -29,7 +30,7 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping
-    public ResponseEntity<?> saveCliente(@Valid @RequestBody Cliente cliente){
+    public ResponseEntity<?> saveCliente(@Valid @RequestBody Cliente cliente) throws IOException{
         Cliente novo = clienteService.save(cliente);
         URI uri = ServletUriComponentsBuilder
             .fromCurrentRequest()

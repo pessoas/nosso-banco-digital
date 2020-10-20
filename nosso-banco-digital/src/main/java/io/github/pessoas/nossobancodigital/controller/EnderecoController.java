@@ -63,7 +63,7 @@ public class EnderecoController {
     
         URI location = uriComponentsBuilder
             .path("/api/documentos/{cpf}")
-            .buildAndExpand(clienteSalvo.getCpf())
+            .buildAndExpand(clienteSalvo.getCpf(),clienteSalvo.getEmail())
             .toUri();
 
         return ResponseEntity.created(location).build();
