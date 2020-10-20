@@ -3,6 +3,8 @@ package io.github.pessoas.nossobancodigital.controller;
 import java.net.URI;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,7 @@ public class EnderecoController {
     private ClienteService clienteService;
 
     @PostMapping("/{cpf}")
-    public ResponseEntity<?> saveEndereco(@PathVariable String cpf, @RequestBody Endereco novoEndereco) {
+    public ResponseEntity<?> saveEndereco(@PathVariable String cpf, @RequestBody @Valid Endereco novoEndereco) {
         
         Optional<Cliente> noBanco = clienteService.findByCpf(cpf);
         if(!noBanco.isPresent()){

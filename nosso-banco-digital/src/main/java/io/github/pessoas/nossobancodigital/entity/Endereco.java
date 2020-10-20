@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Endereco {
@@ -14,6 +15,7 @@ public class Endereco {
     private Long id;
 
     @NotBlank
+    @Pattern(regexp = "\\d{5}-\\d{3}", message = "deve seguir o padrão: 00000-000")
     private String cep;
 
     @NotBlank
