@@ -15,11 +15,11 @@ public class ContaServiceImplementation implements ContaService {
     private ContaRepository contaRepository;
 
     @Override
-    public void novaConta(Cliente cliente) {
+    public Conta novaConta(Cliente cliente) {
 
         Conta novaConta = new Conta(cliente);
 
-        contaRepository.save(novaConta);
+        return contaRepository.save(novaConta);
 
     }
     

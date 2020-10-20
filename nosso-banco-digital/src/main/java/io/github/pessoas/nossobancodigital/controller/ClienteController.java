@@ -76,4 +76,10 @@ public class ClienteController {
 
     }
 
+    @GetMapping("/aceite/{cpf}")
+    public ResponseEntity<?> aceite(@PathVariable String cpf) {
+        this.clienteService.aceite(cpf);
+        return ResponseEntity.ok().build();
+    }
+
 }
