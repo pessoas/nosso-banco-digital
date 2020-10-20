@@ -47,6 +47,12 @@ public class Cliente {
 
     @OneToOne
     private Endereco endereco;
+
+
+    @OneToOne
+    private ArquivoCpf arquivoCpf;
+
+    private String linkArquivoCpf;
     
 
     public Long getId() {
@@ -142,6 +148,22 @@ public class Cliente {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public ArquivoCpf getArquivoCpf() {
+        return arquivoCpf;
+    }
+
+    public void setArquivoCpf(ArquivoCpf arquivoCpf) {
+        this.arquivoCpf = arquivoCpf;
+    }
+
+    public String getLinkArquivoCpf() {
+        return linkArquivoCpf;
+    }
+
+    public void setLinkArquivoCpf(String linkArquivoCpf) {
+        this.linkArquivoCpf = linkArquivoCpf;
     }
 
     

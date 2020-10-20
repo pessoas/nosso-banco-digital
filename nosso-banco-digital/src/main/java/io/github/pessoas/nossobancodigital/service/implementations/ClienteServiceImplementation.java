@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.github.pessoas.nossobancodigital.entity.Cliente;
+import io.github.pessoas.nossobancodigital.entity.projections.ClienteDadosProjection;
 import io.github.pessoas.nossobancodigital.repository.ClienteRepository;
 import io.github.pessoas.nossobancodigital.service.interfaces.ClienteService;
 
@@ -23,6 +24,12 @@ public class ClienteServiceImplementation implements ClienteService {
     @Override
     public Optional<Cliente> findByCpf(String cpf) {
         return clienteRepository.findByCpf(cpf);
+    }
+
+    @Override
+    public Optional<ClienteDadosProjection> findClienteDadosByEmail(String email) {
+        
+        return clienteRepository.findByEmail(email);
     }
     
 }
