@@ -44,6 +44,10 @@ public class Cliente {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @MaiorDezoito(message = "Cliente precisa ser maior de 18 anos")
     LocalDate dataNascimento;
+    
+    private String linkArquivoCpf;
+
+    private Boolean aceito;
 
     @OneToOne
     private Endereco endereco;
@@ -52,7 +56,6 @@ public class Cliente {
     @OneToOne
     private ArquivoCpf arquivoCpf;
 
-    private String linkArquivoCpf;
     
 
     public Long getId() {
@@ -164,6 +167,14 @@ public class Cliente {
 
     public void setLinkArquivoCpf(String linkArquivoCpf) {
         this.linkArquivoCpf = linkArquivoCpf;
+    }
+
+    public Boolean getAceito() {
+        return aceito;
+    }
+
+    public void setAceito(Boolean aceito) {
+        this.aceito = aceito;
     }
 
     
