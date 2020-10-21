@@ -116,6 +116,12 @@ public class Conta {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Conta [agencia=" + agencia + ", cliente=" + cliente + ", codigoBanco=" + codigoBanco + ", conta="
+                + conta  + ", saldo=" + saldo + "]";
+    }
+
     
     
 }

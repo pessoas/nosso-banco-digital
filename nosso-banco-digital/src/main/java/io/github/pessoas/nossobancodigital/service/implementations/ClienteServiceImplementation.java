@@ -5,6 +5,8 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,9 +23,12 @@ public class ClienteServiceImplementation implements ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private JavaMailSender javaMailSender;
+
     private final RestTemplate restTemplate;
 
-    public ClienteServiceImplementation(RestTemplateBuilder restTemplateBuilder){
+    public ClienteServiceImplementation(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
@@ -39,7 +44,7 @@ public class ClienteServiceImplementation implements ClienteService {
 
     @Override
     public Optional<ClienteDadosProjection> findClienteDadosByEmail(String email) {
-        
+
         return clienteRepository.findByEmail(email);
     }
 
@@ -54,7 +59,32 @@ public class ClienteServiceImplementation implements ClienteService {
 
         Conta conta = restTemplate.postForObject(url, cliente, Conta.class);
 
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(cliente.getEmail());
+
+        msg.setSubject("Parabéns!!!");
+        msg.setText("Conta criada com sucesso");
+
+        javaMailSender.send(msg);
+
         return CompletableFuture.completedFuture(conta);
+    }
+
+    @Override
+    @Async
+    public void negado(String cpf) {
+
+        Cliente cliente = clienteRepository.findByCpf(cpf).get();
+        cliente.setAceito(false);
+        clienteRepository.save(cliente);
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(cliente.getEmail());
+        msg.setSubject("Não vamos desistir de você");
+        msg.setText("Pense com mais carinho e junte-se ao nosso banco!!! \nEntre em contato com nossa equipe para finalizar o cadastro.");
+
+        javaMailSender.send(msg);
+
     }
     
 }

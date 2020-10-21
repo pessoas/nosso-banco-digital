@@ -13,4 +13,5 @@ public interface ClienteService {
     public Optional<ClienteDadosProjection> findClienteDadosByEmail(String email);
 
     public CompletableFuture<Conta> aceite(String cpf);
+    public void negado(String cpf);
 }

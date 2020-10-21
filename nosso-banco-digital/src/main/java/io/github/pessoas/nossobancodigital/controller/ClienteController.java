@@ -82,4 +82,10 @@ public class ClienteController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/negado/{cpf}")
+    public ResponseEntity<?> negado(@PathVariable String cpf) {
+        this.clienteService.negado(cpf);
+        return ResponseEntity.noContent().build();
+    }
+
 }
